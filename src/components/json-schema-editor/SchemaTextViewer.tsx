@@ -34,6 +34,7 @@ export default function SchemaTextViewer() {
 				if (!ref) return;
 
 				if (editorRef.current) {
+					editorRef.current.update(schema);
 					return;
 				}
 
@@ -41,7 +42,6 @@ export default function SchemaTextViewer() {
 					mode: 'code',
 					onChange: () => {
 						const text = editorRef.current?.getText();
-
 						if (!text) return;
 
 						try {
@@ -53,7 +53,7 @@ export default function SchemaTextViewer() {
 					},
 				});
 
-				editorRef.current.set(schema);
+				editorRef.current.update(schema);
 			}}
 			style={{ height: '100vh' }}
 		/>

@@ -11,12 +11,12 @@ function HomeComponent() {
 			initialSchema={{
 				type: 'object',
 				properties: {
-					hello: { type: 'string' },
+					hello: { type: ['string', 'null'] },
 					nested: {
 						type: 'object',
 						properties: {
-							foo: { type: 'number' },
-							bar: { type: 'boolean' },
+							foo: { type: ['number', 'null'] },
+							bar: { type: ['boolean', 'null'] },
 						},
 					},
 				},
