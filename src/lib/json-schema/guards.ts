@@ -4,7 +4,6 @@ import {
 	NumberType,
 	ObjectType,
 	PropertySchema,
-	PropertyType,
 	StringType,
 } from '@/lib/json-schema/types';
 
@@ -19,7 +18,9 @@ export function isNumberType(schema: PropertySchema): schema is NumberType {
 	return (
 		schema.type === 'number' ||
 		schema.type === 'integer' ||
-		(Array.isArray(schema.type) && schema.type.includes('number' as any))
+		(Array.isArray(schema.type) &&
+			(schema.type.includes('number' as any) ||
+				schema.type.includes('integer' as any)))
 	);
 }
 

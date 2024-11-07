@@ -2,10 +2,7 @@ import {
 	createJSONSchemaBuilder,
 	findPropertyByKeys,
 } from '@/lib/json-schema/builder';
-import {
-	PropertyBuilderState,
-	propertyBuilderStateToSchema,
-} from '@/lib/json-schema/state';
+import { propertyBuilderStateToSchema } from '@/lib/json-schema/state';
 import {
 	createContext,
 	useContext,
@@ -17,13 +14,8 @@ const SchemaBuilderContext = createContext<
 	ReturnType<typeof createJSONSchemaBuilder>
 >(null!);
 
-export function SchemaBuilderProvider(props: {
-	children: React.ReactNode;
-	initalState?: PropertyBuilderState;
-}) {
-	const [builder, _] = useState(() =>
-		createJSONSchemaBuilder(props.initalState ?? undefined)
-	);
+export function SchemaBuilderProvider(props: { children: React.ReactNode }) {
+	const [builder, _] = useState(() => createJSONSchemaBuilder());
 
 	return (
 		<SchemaBuilderContext.Provider value={builder}>

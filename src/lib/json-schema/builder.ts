@@ -6,16 +6,41 @@ import { StructuredOutputSchema } from '@/lib/json-schema/types';
 
 const INITIAL_STATE = schemaToPropertyState({
 	type: 'object',
-	properties: {},
+	properties: {
+		hello: { type: ['string', 'null'] },
+		nested: {
+			type: 'object',
+			properties: {
+				foo: { type: ['number', 'null'] },
+				bar: { type: ['boolean', 'null'] },
+			},
+		},
+	},
 });
 
-export function createJSONSchemaBuilder(
-	initialState: PropertyBuilderState = INITIAL_STATE
-) {
-	const listeners = new Set<() => void>();
-	let state: PropertyBuilderState = initialState;
+const getInitialState = () => {
+	const storedState = localStorage.getItem('json-schema-builder');
 
-	const notify = () => listeners.forEach(listener => listener());
+	if (!storedState) {
+		return INITIAL_STATE;
+	}
+
+	return JSON.parse(storedState);
+};
+
+const saveState = (state: PropertyBuilderState) => {
+	localStorage.setItem('json-schema-builder', JSON.stringify(state));
+};
+
+export function createJSONSchemaBuilder() {
+	const listeners = new Set<() => void>();
+	let state: PropertyBuilderState = getInitialState();
+
+	const onChange = () => {
+		listeners.forEach(listener => listener());
+
+		saveState(state);
+	};
 
 	return {
 		subscribe: (listener: () => void) => {
@@ -27,7 +52,7 @@ export function createJSONSchemaBuilder(
 		updateSchema: (schema: StructuredOutputSchema) => {
 			state = schemaToPropertyState(schema);
 
-			notify();
+			onChange();
 		},
 		getSnapshot: () => state,
 		addProperty: (parent: string[], property: PropertyBuilderState) => {
@@ -47,7 +72,7 @@ export function createJSONSchemaBuilder(
 			}
 
 			state = { ...state };
-			notify();
+			onChange();
 		},
 		removeProperty: (keys: string[]) => {
 			const parentKeys = keys.slice(0, -1);
@@ -59,7 +84,7 @@ export function createJSONSchemaBuilder(
 			);
 
 			state = { ...state };
-			notify();
+			onChange();
 		},
 		updateProperty: (keys: string[], property: PropertyBuilderState) => {
 			const parentKeys = keys.slice(0, -1);
@@ -88,7 +113,6 @@ export function createJSONSchemaBuilder(
 						key: 'items',
 						type: 'string',
 						children: [],
-						description: '',
 						isNullable: false,
 					},
 				];
@@ -107,7 +131,7 @@ export function createJSONSchemaBuilder(
 			parentState.children[index] = property;
 
 			state = { ...state };
-			notify();
+			onChange();
 		},
 	};
 }
