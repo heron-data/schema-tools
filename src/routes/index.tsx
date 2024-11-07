@@ -6,21 +6,5 @@ export const Route = createFileRoute('/')({
 });
 
 function HomeComponent() {
-	return (
-		<JSONSchemaEditor
-			initialSchema={{
-				type: 'object',
-				properties: {
-					hello: { type: ['string', 'null'] },
-					nested: {
-						type: 'object',
-						properties: {
-							foo: { type: ['number', 'null'] },
-							bar: { type: ['boolean', 'null'] },
-						},
-					},
-				},
-			}}
-		/>
-	);
+	return <JSONSchemaEditor />;
 }
