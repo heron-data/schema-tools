@@ -2,6 +2,7 @@ import {
 	useSchemaBuilderContext,
 	useSchemaBuilderCurrentSchema,
 } from '@/lib/json-schema/context';
+import { schemaToPropertyState } from '@/lib/json-schema/state';
 
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
@@ -40,6 +41,15 @@ export default function SchemaTextViewer() {
 
 				editorRef.current = new JSONEditor(ref, {
 					mode: 'code',
+					onValidate(json) {
+						try {
+							schemaToPropertyState(json);
+						} catch (e) {
+							return [{ message: (e as Error).message, path: [] }];
+						}
+
+						return [];
+					},
 					onChange: () => {
 						const text = editorRef.current?.getText();
 						if (!text) return;

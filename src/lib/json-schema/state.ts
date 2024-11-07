@@ -153,6 +153,8 @@ export function schemaToPropertyState(
 			children: [],
 		};
 	} else {
-		throw new Error('Unsupported schema type');
+		throw new Error('Unsupported schema type ' + JSON.stringify(schema), {
+			cause: schema,
+		});
 	}
 }
