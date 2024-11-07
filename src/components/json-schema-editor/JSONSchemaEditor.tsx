@@ -6,7 +6,7 @@ export default function JSONSchemaEditor() {
 	return (
 		<SchemaBuilderProvider>
 			<div className="grid grid-cols-2 max-h-screen overflow-hidden">
-				<div className="m-2 h-screen overflow-auto pb-5">
+				<div className="h-screen overflow-y-auto pb-5">
 					<PropertiesTreeView />
 				</div>
 				<SchemaTextViewer />

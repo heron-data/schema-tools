@@ -47,7 +47,7 @@ export default function PropertyBuilderForm({
 	);
 
 	return (
-		<div className="grid grid-cols-12 place-items-center my-1 gap-2">
+		<div className="grid grid-cols-12 place-items-center my-1 mr-2 gap-2">
 			<Select
 				value={state.type}
 				onValueChange={v =>

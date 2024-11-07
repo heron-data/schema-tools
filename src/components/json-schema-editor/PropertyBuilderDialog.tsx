@@ -40,7 +40,7 @@ import { useState } from 'react';
 
 export default function PropertyBuilderDialog(props: PropertyBuilderFormProps) {
 	return (
-		<Dialog modal>
+		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant={'outline'}>
 					<MoreHorizontal />
