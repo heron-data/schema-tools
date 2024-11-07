@@ -110,7 +110,7 @@ export function createJSONSchemaBuilder() {
 			if (requiresChildren) {
 				property.children = [
 					{
-						key: 'items',
+						key: property.type == 'array' ? 'items' : '',
 						type: 'string',
 						children: [],
 						isNullable: false,
