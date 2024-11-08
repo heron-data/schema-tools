@@ -7,40 +7,30 @@ import {
 	StringType,
 } from '@/lib/json-schema/types';
 
-export function isStringType(schema: PropertySchema): schema is StringType {
+function isType(schema: PropertySchema, type: string): boolean {
 	return (
-		schema.type === 'string' ||
-		(Array.isArray(schema.type) && schema.type.includes('string' as any))
+		schema.type === type ||
+		(Array.isArray(schema.type) &&
+			[type, 'null'].every(t => schema.type.includes(t as any)))
 	);
+}
+
+export function isStringType(schema: PropertySchema): schema is StringType {
+	return isType(schema, 'string');
 }
 
 export function isNumberType(schema: PropertySchema): schema is NumberType {
-	return (
-		schema.type === 'number' ||
-		schema.type === 'integer' ||
-		(Array.isArray(schema.type) &&
-			(schema.type.includes('number' as any) ||
-				schema.type.includes('integer' as any)))
-	);
+	return isType(schema, 'number') || isType(schema, 'integer');
 }
 
 export function isBooleanType(schema: PropertySchema): schema is BooleanType {
-	return (
-		schema.type === 'boolean' ||
-		(Array.isArray(schema.type) && schema.type.includes('boolean' as any))
-	);
+	return isType(schema, 'boolean');
 }
 
 export function isArrayType(schema: PropertySchema): schema is ArrayType {
-	return (
-		schema.type === 'array' ||
-		(Array.isArray(schema.type) && schema.type.includes('array' as any))
-	);
+	return isType(schema, 'array');
 }
 
 export function isObjectType(schema: PropertySchema): schema is ObjectType {
-	return (
-		schema.type === 'object' ||
-		(Array.isArray(schema.type) && schema.type.includes('object' as any))
-	);
+	return isType(schema, 'object');
 }

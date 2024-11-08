@@ -106,7 +106,7 @@ function PropertyBaseOptions(props: PropertyBuilderFormProps) {
 				<Textarea
 					id="description"
 					defaultValue={props.state.description ?? ''}
-					onChange={e => {
+					onBlur={e => {
 						updateProperty([...props.parentKey, props.state.key], {
 							...props.state,
 							description: !!e.target.value ? e.target.value : undefined,
