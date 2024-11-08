@@ -19,6 +19,7 @@ export default function SchemaTextViewer() {
 
 	return (
 		<div
+			className="min-h-[calc(100vh-48px)]"
 			ref={ref => {
 				containerRef.current = ref;
 
