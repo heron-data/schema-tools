@@ -3,6 +3,9 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
+    "types": [
+      "vite/client",
+    ],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",

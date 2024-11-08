@@ -6,7 +6,7 @@ import { schemaToPropertyState } from '@/lib/json-schema/state';
 
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 export default function SchemaTextViewer() {
 	const schema = useSchemaBuilderCurrentSchema();
@@ -14,18 +14,6 @@ export default function SchemaTextViewer() {
 
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const editorRef = useRef<JSONEditor | null>(null);
-
-	useEffect(() => {
-		if (editorRef.current) {
-			editorRef.current.focus();
-		}
-		return () => {
-			if (editorRef.current) {
-				editorRef.current.destroy();
-				editorRef.current = null;
-			}
-		};
-	}, []);
 
 	return (
 		<div
@@ -65,7 +53,6 @@ export default function SchemaTextViewer() {
 
 				editorRef.current.update(schema);
 			}}
-			style={{ height: '100vh' }}
 		/>
 	);
 }
