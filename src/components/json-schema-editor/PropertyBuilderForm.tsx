@@ -76,7 +76,7 @@ export default function PropertyBuilderForm({
 				</Select>
 				{parentType === 'object' && (
 					<Input
-						placeholder="Key"
+						placeholder="Property Name"
 						id={`${parentKey.join('.')}.${state.key}-key-input`}
 						defaultValue={state.key}
 						ref={inputRef}

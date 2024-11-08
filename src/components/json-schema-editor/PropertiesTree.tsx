@@ -73,7 +73,7 @@ function NewPropertyButton(props: { parentKey: string[]; className?: string }) {
 
 	const handleAddProperty = () => {
 		try {
-			const propertyName = 'property_name';
+			const propertyName = '';
 			addProperty(props.parentKey, {
 				key: propertyName,
 				type: 'string',
