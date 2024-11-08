@@ -24,7 +24,7 @@ function Header() {
 	return (
 		<div className="mx-4 flex justify-between items-center">
 			<div className="flex items-center gap-2">
-				<h2 className="text-xl font-semibold text-primary">schematools</h2> by
+				<h2 className="text-xl font-semibold text-primary">schema-tools</h2> by
 				<HeronLogo />
 			</div>
 			<ResetSchemaButton />
