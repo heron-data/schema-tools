@@ -73,7 +73,7 @@ function NewPropertyButton(props: { parentKey: string[]; className?: string }) {
 
 	const handleAddProperty = () => {
 		try {
-			const propertyName = 'property name';
+			const propertyName = 'property_name';
 			addProperty(props.parentKey, {
 				key: propertyName,
 				type: 'string',
@@ -81,6 +81,7 @@ function NewPropertyButton(props: { parentKey: string[]; className?: string }) {
 				children: [],
 			});
 
+			// Focus on the new property input
 			setTimeout(() => {
 				const elementId = `${props.parentKey.join('.')}.${propertyName}-key-input`;
 				const el = document.getElementById(elementId);
