@@ -85,13 +85,7 @@ function DeletePropertyButton(props: { keys: string[] }) {
 		<Button
 			variant={'destructive'}
 			onClick={() => {
-				const confirmed = confirm(
-					'Are you sure you want to delete this property?'
-				);
-
-				if (confirmed) {
-					removeProperty(props.keys);
-				}
+				removeProperty(props.keys);
 			}}
 		>
 			Delete

@@ -59,6 +59,7 @@ export default function PropertyBuilderForm({
 					}
 				>
 					<SelectTrigger
+						id={`${parentKey.join('.')}.${state.key}-type`}
 						className={'w-[120px] border-0 rounded-none focus:ring-0'}
 					>
 						<SelectValue placeholder="Type" />
@@ -76,6 +77,7 @@ export default function PropertyBuilderForm({
 				{parentType === 'object' && (
 					<Input
 						placeholder="Key"
+						id={`${parentKey.join('.')}.${state.key}-key-input`}
 						defaultValue={state.key}
 						ref={inputRef}
 						className="flex-grow border-0 focus:ring-0 rounded-l-none flex-1 focus-visible:ring-0"

@@ -23,7 +23,7 @@ export default function PropertiesTreeView() {
 					parentType="object"
 				/>
 			))}
-			<NewPropertyButton parentKey={[]} className="ml-3" />
+			<NewPropertyButton parentKey={[]} className="ml-3 my-1" />
 		</div>
 	);
 }
@@ -73,12 +73,19 @@ function NewPropertyButton(props: { parentKey: string[]; className?: string }) {
 
 	const handleAddProperty = () => {
 		try {
+			const propertyName = 'property name';
 			addProperty(props.parentKey, {
-				key: 'newProperty',
+				key: propertyName,
 				type: 'string',
 				isNullable: true,
 				children: [],
 			});
+
+			setTimeout(() => {
+				const elementId = `${props.parentKey.join('.')}.${propertyName}-key-input`;
+				const el = document.getElementById(elementId);
+				el?.focus();
+			}, 0);
 		} catch (e) {
 			toast({
 				variant: 'destructive',
