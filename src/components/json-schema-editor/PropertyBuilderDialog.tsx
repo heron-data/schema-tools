@@ -54,7 +54,7 @@ export default function PropertyBuilderDialog(props: PropertyBuilderFormProps) {
 						</h1>
 					</DialogTitle>
 				</DialogHeader>
-				<div className="grid grid-cols-2 gap-2">
+				<div className="grid md:grid-cols-2 gap-2">
 					<div className="space-y-4">
 						<PropertyBaseOptions {...props} />
 						{props.state.type === 'string' ? (
