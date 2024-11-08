@@ -15,6 +15,8 @@ export default function SchemaTextViewer() {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const editorRef = useRef<JSONEditor | null>(null);
 
+	const cursor = useRef<{ row: number; column: number } | null>(null);
+
 	return (
 		<div
 			ref={ref => {
@@ -24,6 +26,10 @@ export default function SchemaTextViewer() {
 
 				if (editorRef.current) {
 					editorRef.current.update(schema);
+
+					if (cursor.current) {
+						editorRef.current.aceEditor.moveCursorToPosition(cursor.current);
+					}
 					return;
 				}
 
@@ -39,6 +45,9 @@ export default function SchemaTextViewer() {
 						return [];
 					},
 					onChange: () => {
+						cursor.current =
+							editorRef.current?.aceEditor.getCursorPosition() ?? null;
+
 						const text = editorRef.current?.getText();
 						if (!text) return;
 
