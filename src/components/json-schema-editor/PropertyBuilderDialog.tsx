@@ -46,7 +46,7 @@ export default function PropertyBuilderDialog(props: PropertyBuilderFormProps) {
 					<MoreHorizontal />
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="min-w-[80vw]">
+			<DialogContent className="min-w-[80vw] ">
 				<DialogHeader>
 					<DialogTitle>
 						<h1 className="text-xl font-semibold font-mono">
@@ -66,7 +66,7 @@ export default function PropertyBuilderDialog(props: PropertyBuilderFormProps) {
 							<ArrayBuilderOptions {...props} />
 						) : null}
 					</div>
-					<pre className="bg-gray-100 p-2 rounded block overflow-auto min-h-[200px]">
+					<pre className="bg-gray-100 p-2 rounded block overflow-auto min-h-[200px] max-h-[450px]">
 						{JSON.stringify(propertyBuilderStateToSchema(props.state), null, 2)}
 					</pre>
 				</div>

@@ -54,10 +54,7 @@ function PropertyTreeNode(props: {
 				))}
 				{state.type === 'object' && (
 					<>
-						<NewPropertyButton
-							parentKey={[...props.parentKey, state.key]}
-							className="ml-6"
-						/>
+						<NewPropertyButton parentKey={[...props.parentKey, state.key]} />
 						<div className="absolute top-0 left-3 w-0.5 h-full bg-primary" />
 					</>
 				)}
@@ -100,6 +97,9 @@ function NewPropertyButton(props: { parentKey: string[]; className?: string }) {
 		<Button
 			size={isRoot ? 'sm' : 'icon'}
 			className={cn(!isRoot && 'w-6 h-6', props.className)}
+			style={{
+				marginLeft: 12 * (props.parentKey.length + 1),
+			}}
 			onClick={() => {
 				handleAddProperty();
 			}}
