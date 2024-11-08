@@ -102,12 +102,16 @@ export function schemaToPropertyState(
 	const isNullable = Array.isArray(type) && type.includes('null');
 
 	if (isObjectType(schema)) {
+		if (!schema?.properties) {
+			throw new Error(`Object schema ${key} has no properties`);
+		}
+
 		return {
 			key,
 			type: 'object',
 			description: schema.description,
 			isNullable,
-			children: Object.entries(schema.properties ?? []).map(([key, value]) => {
+			children: Object.entries(schema.properties).map(([key, value]) => {
 				return schemaToPropertyState(value, key, false);
 			}),
 		};

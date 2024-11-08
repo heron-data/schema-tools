@@ -10,7 +10,7 @@ import { useRef } from 'react';
 
 export default function SchemaTextViewer() {
 	const schema = useSchemaBuilderCurrentSchema();
-	const { updateSchema } = useSchemaBuilderContext();
+	const { updateSchema, getSnapshot } = useSchemaBuilderContext();
 
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const editorRef = useRef<JSONEditor | null>(null);
@@ -41,6 +41,13 @@ export default function SchemaTextViewer() {
 					onChange: () => {
 						const text = editorRef.current?.getText();
 						if (!text) return;
+
+						const currentState = getSnapshot();
+						const newState = schemaToPropertyState(JSON.parse(text));
+
+						if (JSON.stringify(currentState) === JSON.stringify(newState)) {
+							return;
+						}
 
 						try {
 							const newSchema = JSON.parse(text);
