@@ -23,10 +23,7 @@ export default function PropertiesTreeView() {
 					parentType="object"
 				/>
 			))}
-			<>
-				<NewPropertyButton parentKey={[]} className="ml-1 mt-1" />
-				<div className="absolute top-0 left-0 w-0.5 h-full bg-gray-300" />
-			</>
+			<NewPropertyButton parentKey={[]} className="ml-3" />
 		</div>
 	);
 }
@@ -59,9 +56,9 @@ function PropertyTreeNode(props: {
 					<>
 						<NewPropertyButton
 							parentKey={[...props.parentKey, state.key]}
-							className="ml-1"
+							className="ml-6"
 						/>
-						<div className="absolute top-0 left-0 w-0.5 h-full bg-gray-300 " />
+						<div className="absolute top-0 left-3 w-0.5 h-full bg-primary" />
 					</>
 				)}
 			</div>

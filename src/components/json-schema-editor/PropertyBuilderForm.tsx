@@ -47,43 +47,47 @@ export default function PropertyBuilderForm({
 	);
 
 	return (
-		<div className="grid grid-cols-12 place-items-center my-1 mr-2 gap-2">
-			<Select
-				value={state.type}
-				onValueChange={v =>
-					handleUpdateProperty(state.key, {
-						...state,
-						type: v as unknown as PropertyType,
-					})
-				}
-			>
-				<SelectTrigger className="col-span-4">
-					<SelectValue placeholder="Type" />
-				</SelectTrigger>
-				<SelectContent>
-					{['string', 'number', 'integer', 'boolean', 'array', 'object'].map(
-						type => (
-							<SelectItem key={type} value={type}>
-								{type}
-							</SelectItem>
-						)
-					)}
-				</SelectContent>
-			</Select>
-			{parentType === 'object' && (
-				<Input
-					placeholder="Key"
-					defaultValue={state.key}
-					ref={inputRef}
-					className="col-span-7"
-					onBlur={e => {
+		<div className="my-1 mr-2 gap-2 flex justify-normal items-center">
+			<div className="flex rounded-md border border-input overflow-hidden focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-0 w-full p-0">
+				<Select
+					value={state.type}
+					onValueChange={v =>
 						handleUpdateProperty(state.key, {
 							...state,
-							key: e.target.value,
-						});
-					}}
-				/>
-			)}
+							type: v as unknown as PropertyType,
+						})
+					}
+				>
+					<SelectTrigger
+						className={'w-[120px] border-0 rounded-none focus:ring-0'}
+					>
+						<SelectValue placeholder="Type" />
+					</SelectTrigger>
+					<SelectContent className="border-none max-w-20">
+						{['string', 'number', 'integer', 'boolean', 'array', 'object'].map(
+							type => (
+								<SelectItem key={type} value={type}>
+									{type}
+								</SelectItem>
+							)
+						)}
+					</SelectContent>
+				</Select>
+				{parentType === 'object' && (
+					<Input
+						placeholder="Key"
+						defaultValue={state.key}
+						ref={inputRef}
+						className="flex-grow border-0 focus:ring-0 rounded-l-none flex-1 focus-visible:ring-0"
+						onBlur={e => {
+							handleUpdateProperty(state.key, {
+								...state,
+								key: e.target.value,
+							});
+						}}
+					/>
+				)}
+			</div>
 			<div className="col-span-1">
 				<PropertyBuilderDialog
 					parentKey={parentKey}
