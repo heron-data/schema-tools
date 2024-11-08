@@ -7,7 +7,7 @@ import { SchemaBuilderProvider } from '@/lib/json-schema/context';
 export default function JSONSchemaEditor() {
 	return (
 		<SchemaBuilderProvider>
-			<div className="grid grid-cols-2 max-h-screen  h-[calc(100vh-48px)]">
+			<div className="grid  max-h-screen  h-[calc(100vh-48px)] grid-cols-1 md:grid-cols-2">
 				<div>
 					<Header />
 					<div className="h-[calc(100vh-48px)] overflow-y-auto pb-5">
