@@ -35,6 +35,7 @@ type ArrayType = {
 type ObjectType = {
 	type: ['object', 'null'] | 'object';
 	properties: Record<string, PropertySchema>;
+	additionalProperties?: boolean;
 };
 
 export { ArrayType, BooleanType, NumberType, ObjectType, StringType };

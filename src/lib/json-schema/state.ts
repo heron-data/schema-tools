@@ -79,6 +79,7 @@ export function propertyBuilderStateToSchema(
 			return {
 				type: state.isNullable ? ['object', 'null'] : 'object',
 				description: state.description,
+				additionalProperties: false,
 				properties: Object.fromEntries(
 					state.children.map(child => [
 						child.key,
