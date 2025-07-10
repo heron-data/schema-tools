@@ -36,6 +36,7 @@ type ObjectType = {
 	type: ['object', 'null'] | 'object';
 	properties: Record<string, PropertySchema>;
 	additionalProperties?: boolean;
+	required?: string[];
 };
 
 export { ArrayType, BooleanType, NumberType, ObjectType, StringType };
@@ -50,6 +51,7 @@ export type PropertySchema = { description?: string } & (
 export type StructuredOutputSchema = {
 	type: 'object';
 	properties: Record<string, PropertySchema>;
+	required?: string[];
 };
 
 export type PropertyType = Extract<PropertySchema['type'], string>;

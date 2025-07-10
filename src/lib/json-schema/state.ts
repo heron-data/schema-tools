@@ -86,6 +86,7 @@ export function propertyBuilderStateToSchema(
 						propertyBuilderStateToSchema(child),
 					])
 				),
+				required: state.children.map(child => child.key),
 			};
 	}
 }
