@@ -65,7 +65,11 @@ export function createJSONSchemaBuilder() {
 					child => child.key === property.key
 				);
 				if (parentHasChildWithSameKey) {
-					throw new Error(`Parent already has child with key ${property.key}`);
+					if (property.key === '') {
+						throw new Error('Parent have an unnamed property. Please give it a name before adding another property');
+					} else {
+						throw new Error(`Parent already has child with key ${property.key}`);
+					}
 				}
 
 				parentState.children.push(property);
